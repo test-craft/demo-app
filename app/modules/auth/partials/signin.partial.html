@@ -1,0 +1,33 @@
+<div layout="column" layout-fill>
+    <form name="signinForm">
+        <div layout="row" layout-align="center">
+            <h1 class="md-headline">LOGIN</h1>
+        </div>
+        <div layout="row" layout-align="center" style="padding-top:20px">
+            <span>Login using your existing email and password</span>
+        </div>
+        <div layout="row"  layout-align="center" style="padding-top:20px">
+            <md-input-container flex="40">
+                <label>Email</label>
+                <input required type="email" name="email" ng-model="signinController.email" ng-pattern="/^.+@.+\..+$/" />
+                <div ng-messages="signinForm.email.$error" role="alert">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="pattern">Incorrect Email</div>
+                </div>
+            </md-input-container>
+        </div>
+        <div layout="row"  layout-align="center">
+            <md-input-container flex="40">
+                <label>Password</label>
+                <input required type="password" name="password" minlength="4" ng-model="signinController.password">
+                <div ng-messages="signinForm.password.$error" role="alert">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="minlength">Password should contain at least 4 charachters</div>
+                </div>
+            </md-input-container>
+        </div>
+        <md-dialog-actions>
+            <md-button class="md-primary md-raised" ng-click="signinController.signin()">Sign-in</md-button>
+        </md-dialog-actions>
+    </form>
+</div>
