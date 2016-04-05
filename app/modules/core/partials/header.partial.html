@@ -4,24 +4,24 @@
 
         <span>
             <md-menu md-offset="0 40">
-                <i class="material-icons" ng-click="$mdOpenMenu($event)">menu</i>
+                <i class="material-icons" ng-click="$mdOpenMenu($event)" id="upperLeftMenu">menu</i>
                 <md-menu-content width="2">
                     <md-menu-item>
-                        <md-button>
+                        <md-button ng-click="headerController.onItem1Click()" id="upperLeftMenuChild1">
                             <div class="content-menu-border"></div>
-                            Item 1
+                            Alert
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button>
+                        <md-button ng-click="headerController.onItem2Click()" id="upperLeftMenuChild2">
                             <div class="content-menu-border"></div>
-                            Item 2
+                            Confirmation
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button>
+                        <md-button ng-click="headerController.onItem3Click()" id="upperLeftMenuChild3">
                             <div class="content-menu-border"></div>
-                            Item 3
+                            Pop-Up
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>

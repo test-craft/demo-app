@@ -3,11 +3,11 @@
 var path = require('path');
 var webpack = require("webpack");
 
-console.log('Running for [' + env + ']');
-console.log('isProduction [' + isProduction + ']');
-
 var env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
 var isProduction = (env === 'production');
+
+console.log('Running for [' + env + ']');
+console.log('isProduction [' + isProduction + ']');
 
 module.exports = {
     context: path.resolve(__dirname + '/app'),
