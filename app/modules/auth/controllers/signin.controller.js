@@ -11,7 +11,7 @@ module.exports = angular.module('auth').controller('signinController', ['$log', 
 
                 $mdToast.show($mdToast.simple().content('Signin Success').position('top right'));
 
-                //$state.go('core.organizations');
+                $state.go('core.todo.list');
             }, function(err){
                 $mdToast.show($mdToast.simple().content('Error').position('top right'));
             });

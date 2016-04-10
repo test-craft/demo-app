@@ -10,7 +10,8 @@ module.exports = function(){
     log('===== Initializing application =====');
     var modules = [
         'core',
-        'auth'
+        'auth',
+        'todo'
     ];
 
     var dep = [];

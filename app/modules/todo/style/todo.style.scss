@@ -1,0 +1,219 @@
+
+@import "../../core/style/core";
+
+#todo-list-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.filter-todo-by-name .md-chips {
+  margin: 0 20px 0 20px;
+}
+
+.filter-todo-by-name .md-chips .md-chip-input-container {
+  margin: 1px 8px 0 0 !important;
+}
+
+.filter-todo-by-name .md-chips .md-chip {
+  margin: 4px 10px 0 0;
+  background: $secondary-color;
+}
+
+.filter-todo-by-tag {
+  position: relative;
+}
+
+.filter-todo-by-tag:before {
+  content: '';
+  width: 1px;
+  height: 20px;
+  background: #AFBBC6;
+  position: absolute;
+  top: 7px;
+  left: 0;
+}
+
+.filter-todo-by-tag .md-chips {
+  margin: 0 20px 0 20px;
+}
+
+.filter-todo-by-tag .md-chips .md-chip-input-container {
+  margin: 1px 8px 0 0 !important;
+}
+
+.filter-todo-by-tag .md-chips .md-chip {
+  margin: 4px 10px 0 0;
+}
+
+.todo-list-table {
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow-x: hidden;
+  overflow-y: visible;
+  color: $primary-color;
+}
+
+.todo-list-table-header, .todo-list-table-row {
+  width: calc(100% - 48px);
+}
+
+.todo-list-table-header {
+  height: 44px;
+  font-size: 12px;
+  margin: 0 auto;
+  line-height: 34px;
+  font-family: RobotoLight, sans-serif;
+  color: $third-font-color;
+  padding: 5px 0 5px 20px;
+}
+
+.todo-list-table-row {
+  height: 70px;
+  margin: 0 auto 7px auto;
+  background: #FFFFFF;
+  position: relative;
+  padding: 22px 0 22px 20px;
+  box-shadow: 0 2px 6px 0 rgba(139, 157, 175, 0.1);
+  cursor: pointer;
+}
+
+.todo-list-table-row:hover {
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.todo-list-table-row .left-border {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: $secondary-background-color;
+}
+
+.todo-list-table-row:hover .left-border {
+  display: block;
+}
+
+.todo-list-table .first-column {
+  float: left;
+  width: 250px;
+  margin: 0 50px 0 0;
+}
+
+.todo-list-table .first-column .todo-name {
+  font-size: 14px;
+  color: $primary-color;
+  font-family: RobotoMedium, sans-serif;
+  margin: 0 0 4px 0;
+}
+
+.todo-list-table .first-column .update-date {
+  font-size: 10px;
+  font-family: RobotoRegular, sans-serif;
+}
+
+.todo-list-table .second-column {
+  float: left;
+  width: calc(100% - 890px);
+  height: 100%;
+  margin: 0 50px 0 0;
+}
+
+.todo-list-table .second-column .md-chips {
+  box-shadow: none;
+}
+
+.todo-list-table .third-column {
+  float: left;
+  width: 400px;
+  margin: 0 50px 0 0;
+}
+
+.todo-list-table .third-column .percentage {
+  color: $secondary-color;
+  font-size: 30px;
+  float: left;
+  line-height: 26px;
+  font-family: RobotoLight, sans-serif;
+}
+
+.todo-list-table .third-column .sign {
+  color: $secondary-color;
+  font-size: 12px;
+  float: left;
+  line-height: 17px;
+  margin: 0 0 0 2px;
+  font-family: RobotoRegular, sans-serif;
+}
+
+.todo-list-table .fourth-column {
+  float: left;
+  width: 85px;
+  margin: 0 50px 0 0;
+}
+
+.todo-list-table .fourth-column .invalid-test-count {
+  color: $secondary-color;
+  font-size: 30px;
+  float: left;
+  line-height: 26px;
+  font-family: RobotoLight, sans-serif;
+}
+
+.todo-list-table .fourth-column .overall-test-count {
+  font-size: 12px;
+  float: left;
+  line-height: 37px;
+  font-family: RobotoRegular, sans-serif;
+}
+
+.todo-list-table .fifth-column {
+  float: left;
+  width: 150px;
+}
+
+.todo-list-table .fifth-column .severity-level {
+  color: $secondary-color;
+  font-size: 18px;
+  line-height: 20px;
+  font-family: RobotoLight, sans-serif;
+}
+
+.todo-list-table .fifth-column .top-severity-link {
+  font-size: 11px;
+  line-height: 14px;
+  cursor: pointer;
+  color: $third-font-color;
+  font-family: RobotoLight, sans-serif;
+}
+
+.todo-list-table-row .table-row-btn {
+  display: none !important;
+  position: absolute !important;
+  top: 0;
+  height: 100% !important;
+  background: #2DA397 !important;
+  color: #FFFFFF !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  width: 70px !important;
+  cursor: default !important;
+}
+
+.todo-list-table-row .table-row-btn1 {
+  right: 71px;
+}
+
+.todo-list-table-row .table-row-btn2 {
+  right: 0;
+}
+
+.todo-list-table-row:hover .table-row-btn {
+  display: block !important;
+}
+
+//.todo-list-table-row .table-row-btn:hover {
+//  background: $secondary-background-color !important;
+//}
