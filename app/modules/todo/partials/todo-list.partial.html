@@ -7,13 +7,14 @@
                     md-transform-chip="todoListController.transformChip($chip)"
                     md-on-add="todoListController.updateSearchStringsList(false, $chip)"
                     md-on-remove="todoListController.updateSearchStringsList(true, $chip)"
-                    placeholder="Filter To-Do By Name" id="filterByName">
+                    placeholder="Filter To-Do By Name" id="filterByName"
+                    id="todoFilterByNameOrTagName">
                 <md-chip-template>
                     <strong>{{$chip}}</strong>
                 </md-chip-template>
             </md-chips>
             <span flex></span>
-            <md-button class="main-toolbar-btn" ng-click="todoListController.clearFilters()">
+            <md-button class="main-toolbar-btn" ng-click="todoListController.clearFilters()" id="todoClearAllFilters">
                 Clear All Filters
             </md-button>
         </div>
