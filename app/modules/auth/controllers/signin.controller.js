@@ -16,5 +16,10 @@ module.exports = angular.module('auth').controller('signinController', ['$log', 
                 $mdToast.show($mdToast.simple().content('Error').position('top right'));
             });
         };
+
+        this.clear = function(){
+            this.email = '';
+            this.password = '';
+        };
     }
 ]);

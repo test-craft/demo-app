@@ -11,7 +11,8 @@ module.exports = function(coreModule){
             require('../config/theme.config')
         ],
         directives : [
-            require('../directives/header.directive')
+            require('../directives/header.directive'),
+            require('../directives/context-click.directive')
         ],
         controllers : [
             require('../controllers/core.controller'),
