@@ -7,7 +7,7 @@
             <span>Login using your existing email and password</span>
         </div>
         <div layout="row"  layout-align="center" style="padding-top:20px">
-            <md-input-container flex="40">
+            <md-input-container flex="40" id="signinInputContainer">
                 <label>Email</label>
                 <input required type="email" name="email" ng-model="signinController.email" ng-pattern="/^.+@.+\..+$/" />
                 <div ng-messages="signinForm.email.$error" role="alert">
