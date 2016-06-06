@@ -1,8 +1,10 @@
 'use strict';
 
-module.exports = angular.module('auth').controller('signinController', ['$log', 'authService', '$mdToast', '$state',
-    function($log, authService, $mdToast, $state){
+module.exports = angular.module('auth').controller('signinController', ['$log', '$scope', 'authService', '$mdToast', '$state',
+    function($log, $scope, authService, $mdToast, $state){
         $log.info('Signin Controller Loaded');
+
+        $scope.click = 0;
 
         this.signin = function(){
             authService.signin(this.email, this.password).then(function(response){
