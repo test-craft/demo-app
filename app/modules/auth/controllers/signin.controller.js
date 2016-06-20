@@ -24,7 +24,7 @@ module.exports = angular.module('auth').controller('signinController', ['$log', 
             this.password = '';
         };
 
-        this.lowerRightButton = function(){
+        this.lowerLeftButton = function(){
             window.alert('Lower Right Button');
         }
     }
