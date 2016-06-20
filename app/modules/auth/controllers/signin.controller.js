@@ -23,5 +23,9 @@ module.exports = angular.module('auth').controller('signinController', ['$log', 
             this.email = '';
             this.password = '';
         };
+
+        this.lowerRightButton = function(){
+            window.alert('Lower Right Button');
+        }
     }
 ]);
