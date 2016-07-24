@@ -9,10 +9,12 @@
     // Consts
     var EVENT_TIME_DIFFERENCE = 150;
     var MAX_NAME_LENGTH = 25;
-    var INTERVAL_TIME = 15000;
+    var INTERVAL_TIME = 5000;
 
     var isRecording = true;
     var components = [];
+
+    var sessionId = '';
 
     // ========== Deceleration Of Maps ==========//
 
@@ -152,6 +154,16 @@
 
     // ========== End Of Declerations ========== //
 
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    }
+
     function findElementType(element){
         var tagName = element.tagName.toLowerCase();
         var type = element.getAttribute('type');
@@ -274,11 +286,13 @@
                 name : name,
                 component : componentInstance.getObject(),
                 data : data,
-                timestamp : new Date().getTime()
+                timestamp : new Date().getTime(),
+                sessionId : sessionId
             });
         },
 
         sendEvents : function(){
+            if (eventsHandler._events.length === 0) return;
 
             log('=== Sending [' + eventsHandler._events.length + ']');
 
@@ -290,7 +304,7 @@
                     // log('Event Sent');
                 }
             };
-            xhttp.open("POST", "http://localhost:3000/api/echo", true);
+            xhttp.open("POST", "http://localhost:3000/api/user-event", true);
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send(JSON.stringify(utils.clearEvents(eventsHandler._events)));
 
@@ -897,6 +911,8 @@
         registerEvents();
 
         setInterval(utils.sendEvents, INTERVAL_TIME);
+
+        sessionId = guid();
     }
     init();
 
