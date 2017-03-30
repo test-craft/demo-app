@@ -16,3 +16,6 @@ cp ./app/*.png ./build
 cp ./app/*.jpg ./build
 
 cp ./index.html ./build/
+cp ./iframe1.html ./build/
+cp ./iframe2.html ./build/
+cp ./iframe3.html ./build/
