@@ -1,0 +1,35 @@
+
+<div  class="content-background">
+
+    <div class="popup-inner-container">
+        <div class="popup-header">New Spec</div>
+        <span id="resultLabel"></span>
+        <md-dialog-actions class="popup-buttons-container">
+            <md-button class="popup-button" ng-click="usecaseDialogController.cancel()">Button</md-button>
+           
+        </md-dialog-actions>
+        <md-input-container class="popup-input">
+            <label>Name</label>
+            <input type="text" ng-model="form.data.name">
+        </md-input-container>
+
+        <md-input-container class="popup-input">
+            <label>Description</label>
+            <textarea ng-model="form.data.description" md-maxlength="100"></textarea>
+        </md-input-container>
+
+        <md-chips ng-model="form.data.tags"
+                  placeholder="Enter a tag"
+                  secondary-placeholder="Enter a tag"
+                  class="popup-tags-container">
+            <md-chip-template>
+                <strong>{{$chip}}</strong>
+            </md-chip-template>
+        </md-chips>
+
+    </div>
+
+
+
+
+</div>

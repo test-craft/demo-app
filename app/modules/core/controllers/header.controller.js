@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('headerController', ['$scope', '$log',
-    function($scope, $log){
+angular.module('core').controller('headerController', ['$scope', '$log', '$state',
+    function($scope, $log, $state){
         $log.info('Header Controller Loaded');
 
         this.onItem1Click = function() {
@@ -15,5 +15,9 @@ angular.module('core').controller('headerController', ['$scope', '$log',
         this.onItem3Click = function() {
             window.open("http://www.google.com", "new-window, 'width=480, height=320");
         };
+
+        this.navigateTestPage = function(){
+            $state.go('core.test.form');
+        }
     }
 ]);
