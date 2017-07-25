@@ -12,7 +12,8 @@ module.exports = function(){
         'core',
         'auth',
         'todo',
-        'test-form'
+        'test-form',
+        'load'
     ];
 
     var dep = [];

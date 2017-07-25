@@ -1,0 +1,18 @@
+
+<div  class="content-background">
+
+    <div class="popup-inner-container" ng-if="isLoading">
+        <div class="popup-header">Loading...</div>
+    </div>
+    <div class="popup-inner-container" ng-if="!isLoading">
+        <md-input-container class="popup-input">
+            <label>Name</label>
+            <input type="text" ng-model="form.data.name">
+        </md-input-container>
+
+        <md-input-container class="popup-input">
+            <label>Description</label>
+            <textarea ng-model="form.data.description" md-maxlength="100"></textarea>
+        </md-input-container>
+    </div>
+</div>
