@@ -13,7 +13,8 @@ module.exports = function(){
         'auth',
         'todo',
         'test-form',
-        'load'
+        'load',
+        'new-test-form'
     ];
 
     var dep = [];

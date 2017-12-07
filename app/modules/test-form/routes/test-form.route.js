@@ -16,7 +16,7 @@ module.exports = angular.module('testForm')
                         }
                     }
                 }).state('core.test.form', {
-                url: '/form',
+                url: '/form2',
                 views : {
                     testForm : {
                         templateUrl: '/app/modules/test-form/partials/test-form.partial.html',

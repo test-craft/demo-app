@@ -1,0 +1,183 @@
+
+<div  class="content-background">
+
+    <div class="popup-inner-container" ng-mousemove="captureMouseCoordinates($event)" ng-mousedown="onMouseDown($event)">
+        <div class="popup-header">New Spec</div>
+        <spcaptureMouseCoordinatesan id="resultLabel"></spcaptureMouseCoordinatesan>
+        <!--Button-->
+        <div class="separation-div">Button tests</div>
+        <div class="component-container">
+            <md-dialog-actions class="popup-buttons-container">
+                <md-button class="popup-button-class"
+                           ng-click="onClick(components.button)"
+                           ng-dblclick="onDblClick(components.button)"
+                           ng-right-click="onRightClick(components.button)"
+                           ng-mouseenter="onMouseEnter(components.button)"
+                           ng-blur="onFocusLost(components.button)">
+                    Test Button
+                </md-button>
+                <label class="action-label">{{buttonActionLbl}}</label>
+            </md-dialog-actions>
+        </div>
+        <!--Label-->
+        <div class="separation-div">Label tests</div>
+        <div class="component-container">
+            <md-dialog-actions class="popup-buttons-container">
+                <label class="test-label" ng-click="onClick(components.label)"
+                       ng-dblclick="onDblClick(components.label)"
+                       ng-right-click="onRightClick(components.label)"
+                       ng-mouseenter="onMouseEnter(components.label)"
+                       ng-blur="onFocusLost(components.label)">
+                    TEST LABEL
+                </label>
+                <label class="action-label">{{labelActionLbl}}</label>
+            </md-dialog-actions>
+        </div>
+        <!--Textbox-->
+        <div class="separation-div">TextBox tests</div>
+        <div class="component-container">
+            <md-dialog-actions class="popup-buttons-container">
+                <input class="test-input" placeholder="Test Input"
+                       ng-click="onClick(components.textBox)"
+                       ng-dblclick="onDblClick(components.textBox)"
+                       ng-right-click="onRightClick(components.textBox)"
+                       ng-mouseenter="onMouseEnter(components.textBox)"
+                       ng-blur="onFocusLost(components.textBox)"/>
+                <label class="action-label">{{textBoxActionLbl}}</label>
+            </md-dialog-actions>
+        </div>
+        <!--Checkbox-->
+        <div class="separation-div">CheckBox tests</div>
+        <div class="component-container">
+            <md-dialog-actions class="popup-buttons-container">
+                <md-checkbox class="test-checkbox"
+                             ng-model="checkBoxChecked"
+                             class="blue"
+                             ng-change="onCheckBoxChanged()"
+                             ng-dblclick="onDblClick(components.checkBox)"
+                             ng-right-click="onRightClick(components.checkBox)"
+                             ng-mouseenter="onMouseEnter(components.checkBox)"
+                             ng-blur="onFocusLost(components.checkBox)">
+                    Test Checkbox
+                </md-checkbox>
+                <label class="action-label">{{checkBoxActionLbl}}</label>
+            </md-dialog-actions>
+        </div>
+        <!--Radio Button-->
+        <div class="separation-div">Radio Button tests</div>
+        <div class="component-container">
+            <md-dialog-actions class="popup-buttons-container" >
+                <md-radio-group>
+                    <md-radio-button
+                            class="test-radiobutton"
+                            ng-model="radioButtonChecked"
+                            ng-click="onRadioButtonChanged()"
+                            ng-dblclick="onDblClick(components.radioButton)"
+                            ng-right-click="onRightClick(components.radioButton)"
+                            ng-mouseenter="onMouseEnter(components.radioButton)"
+                            ng-blur="onFocusLost(components.radioButton)">
+                        Radio Button
+                    </md-radio-button>
+                </md-radio-group>
+            </md-dialog-actions>
+            <label class="action-label">{{radioButtonActionLbl}}</label>
+        </div>
+        <!--Combo box-->
+        <div class="separation-div">ComboBox tests</div>
+        <div class="component-container">
+            <select class="test-combobox"
+                    ng-mouseenter="onMouseEnter(components.comboBox)" ng-model="option" ng-options="o.label for o in selectOptions">
+            </select>
+            <label class="action-label">{{comboBoxActionLbl}}</label>
+
+        </div>
+
+        <!--Browser-->
+        <div class="separation-div">Browser tests</div>
+        <div class="component-container">
+            <md-button class="popup-button-class" ng-click="invokeAlert()">
+                Invoke Alert
+            </md-button>
+            <label class="action-label">{{alertActionLbl}}</label>
+        </div>
+        <div class="component-container">
+            <label class="url-label"><b>URL:</b> {{currentUrl}}</label>
+        </div>
+        <div class="component-container">
+            <label class="url-label"><b>Title:</b> {{title}}</label>
+        </div>
+        <div class="component-container">
+            <label class="url-label"><b>Mouse coordinates:</b> X:{{mouseCoords.X}} Y:{{mouseCoords.Y}}</label>
+        </div>
+        <div class="component-container">
+            <label class="url-label"><b>Mouse click coordinates:</b> X:{{mouseClickCoords.X}} Y:{{mouseClickCoords.Y}}</label>
+        </div>
+        <div class="component-container">
+            <label id = "runScriptId" class="url-label"><b>Run Script Result: </b> </label>
+        </div>
+
+
+
+        <!--Date-picker-->
+        <div class="separation-div">Date picker tests</div>
+        <div class="component-container">
+            <md-datepicker id="datePickerId" ng-model="chosenDate" md-placeholder="Choose date" md-open-on-focus ng-change="onDateSelected()"></md-datepicker>
+            <label class="action-label">{{chosenDate}}</label>
+        </div>
+
+        <!--Image tests-->
+        <div class="separation-div">Image tests</div>
+
+        <div class="component-container">
+            <img id="imgId" ng-src="/app/assets/images/testcraft-logo.png" style="height:85px;" ng-dblclick="onDblClick(components.image)" style="float:left;">
+            <label class="action-label">{{imageActionLbl}}</label>
+        </div>
+        <label class="img-src-label" >{{imgSrc}}</label>
+
+        <!--File upload tests-->
+        <div class="separation-div">File upload tests</div>
+        <div class="component-container">
+            <input id="fileId" type="file" style="padding-bottom:5px;">
+            <label class="action-label">{{fileUploadActionLbl}}</label>
+        </div>
+
+        <!--Draggable components-->
+        <div class="row"  style="height:190px;">
+            <div class="separation-div">Draggable components</div>
+
+            <div class="component-container dropzone " style="float:left; width:20%; min-height: 42px;">
+                <h3>Dropzone 1</h3>
+                <ul dnd-list="draggableLists.A" class="draggable-list" style="min-height: 42px;">
+                    <li ng-repeat="item in draggableLists.A"
+                        dnd-draggable="item"
+                        dnd-moved="onDragEnd($index,item,'A')"
+                        dnd-effect-allowed="move"
+                        ng-class="{'selected': models.selected === item}"
+                        dnd-dragstart="onDragStart(item)">
+
+                        {{item.label}}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="component-container dropzone " style="float:left; width:20%; min-height: 42px;">
+                <h3>Dropzone2</h3>
+                <ul dnd-list="draggableLists.B" class="draggable-list" style="min-height: 42px;">
+                    <li ng-repeat="item in draggableLists.B"
+                        dnd-draggable="item"
+                        dnd-moved="onDragEnd($index,item,'B')"
+                        dnd-effect-allowed="move"
+                        ng-class="{'selected': models.selected === item}"
+                        dnd-dragstart="onDragStart(item)">
+
+                        {{item.label}}
+                    </li>
+                </ul>
+            </div>
+
+            <div style="float:left; width:20%; min-height: 42px; padding-top:25px;">
+                <label class="url-label" >Drag Offsets: X:{{dragOffset.x}} Y:{{dragOffset.y}}</label>
+            </div>
+        </div>
+    </div>
+</div>

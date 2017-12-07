@@ -10,7 +10,7 @@ require('angular-loading-bar/build/loading-bar.css');
 
 require('angular-material-data-table/dist/md-data-table.css');
 require('angular-material-data-table/dist/md-data-table.js');
-
+require('angular-drag-and-drop-lists/angular-drag-and-drop-lists.js');
 
 var coreModule = angular.module('core', [
     require('angular-sanitize'),
@@ -22,6 +22,7 @@ var coreModule = angular.module('core', [
     'angularMoment',
     'angular-loading-bar',
     'md.data.table',
+    'dndLists'
 ]);
 
 // Intialize

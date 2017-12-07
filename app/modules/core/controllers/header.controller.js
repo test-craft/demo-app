@@ -23,5 +23,9 @@ angular.module('core').controller('headerController', ['$scope', '$log', '$state
         this.navigateLoadingPage = function(){
             $state.go('core.load');
         }
+
+        this.navigateNewTestForm = function(){
+            $state.go('core.newtest.form');
+        }
     }
 ]);

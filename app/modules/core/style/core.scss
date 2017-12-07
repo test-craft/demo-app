@@ -328,7 +328,7 @@ md-toolbar > md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper 
   padding: 0 !important;
 }
 
-.popup-button {
+.popup-button-class {
   height: 30px;
   line-height: 30px;
   min-height: 30px;
@@ -342,11 +342,11 @@ md-toolbar > md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper 
   font-family: RobotoMedium, sans-serif;
 }
 
-.popup-button:nth-child(n + 2) {
+.popup-button-class:nth-child(n + 2) {
   margin: 0 0 0 16px !important;
 }
 
-.popup-button:hover {
+.popup-button-class:hover {
   color: #FFFFFF !important;
   background: $secondary-color !important;
 }
