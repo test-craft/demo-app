@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('newTestForm').controller('newTestFormController', ['$scope','$log', '$state', '$location',
-    function($scope, $log, $state, $location){
+angular.module('newTestForm').controller('newTestFormController', ['$scope','$log', '$state', '$location', 'todoService',
+    function($scope, $log, $state, $location, todoService){
 
         //action labels
         $scope.buttonActionLbl = "";
@@ -174,7 +174,7 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
         $scope.onMouseDown = function($event){
             $scope.mouseClickCoords.X = $event.x;
             $scope.mouseClickCoords.Y = $event.y;
-        }
+        };
 
         $scope.captureMouseCoordinates = function($event){
           $scope.mouseCoords.X = $event.x;
@@ -187,6 +187,30 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
                $scope.comboBoxActionLbl = value.label;
            }
         });
+
+        $scope.ajax = function (){
+            todoService.ajax().then(function (result) {
+
+            });
+        };
+        $scope.activeAjax = 0;
+        (function(xhr) {
+            xhr.active = 0;
+            var pt = xhr.prototype;
+            var _send = pt.send;
+            pt.send = function() {
+                xhr.active++;
+                $scope.activeAjax ++;
+                this.addEventListener('readystatechange', function(e) {
+                    if ( this.readyState == 4 ) {
+
+                        xhr.active--;
+                        $scope.activeAjax --;
+                    }
+                });
+                _send.apply(this, arguments);
+            }
+        })(XMLHttpRequest);
 
 
         function onFileSelected(){

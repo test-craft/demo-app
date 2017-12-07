@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('newTestForm').factory('todoService', ['$log', '$q',
-    function($log, $q){
+angular.module('newTestForm').factory('todoService', ['$log', '$q', '$http', '$httpParamSerializer',
+    function($log, $q, $http, $httpParamSerializer){
 
         var todos = [
             {
@@ -49,6 +49,28 @@ angular.module('newTestForm').factory('todoService', ['$log', '$q',
                 });
 
                 return $q.resolve(elem);
+            },
+
+            ajax : function () {
+                return $http({
+                    method: 'POST',
+                    url: 'https://fiddle.jshell.net/echo/json/',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    transformRequest: $httpParamSerializer,
+                    transformResponse: function (x) {
+                        return angular.fromJson(angular.fromJson(x));
+                    },
+                    data: {"delay": 10}
+                }).then(function (result) {
+                    return result;
+                }, function (err) {
+                    return err;
+                });
+           /*     return $http.post('http://fiddle.jshell.net/echo/json/', {
+                    delay:  10
+                }).then(function(response){
+                   return response;
+                });*/
             }
         };
 
