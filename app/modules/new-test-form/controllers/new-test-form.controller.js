@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('newTestForm').controller('newTestFormController', ['$scope','$log', '$state', '$location', 'todoService',
-    function($scope, $log, $state, $location, todoService){
+angular.module('newTestForm').controller('newTestFormController', ['$scope','$log', '$state', '$location', 'todoService', '$timeout',
+    function($scope, $log, $state, $location, todoService, $timeout){
 
         //action labels
         $scope.buttonActionLbl = "";
@@ -188,10 +188,17 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
            }
         });
 
-        $scope.ajax = function (){
+        $scope.ajax = function (option){
             todoService.ajax().then(function (result) {
 
             });
+            if(option === 'alert'){
+                $timeout(function () {
+                    alert("ajax alert");
+                }, 2000);
+            }
+
+
         };
         $scope.activeAjax = 0;
         (function(xhr) {

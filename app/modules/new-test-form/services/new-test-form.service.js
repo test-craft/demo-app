@@ -60,7 +60,7 @@ angular.module('newTestForm').factory('todoService', ['$log', '$q', '$http', '$h
                     transformResponse: function (x) {
                         return angular.fromJson(angular.fromJson(x));
                     },
-                    data: {"delay": 10}
+                    data: {"delay": 5}
                 }).then(function (result) {
                     return result;
                 }, function (err) {

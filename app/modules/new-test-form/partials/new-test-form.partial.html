@@ -181,9 +181,14 @@
         </div>
 
         <div class="separation-div">Ajax</div>
+        <md-button class="popup-button-class ajax-alert"
+                   ng-click="ajax('alert')">
+            Ajax {{activeAjax}}
+        </md-button>
         <md-button class="popup-button-class ajax"
                    ng-click="ajax()">
             Ajax {{activeAjax}}
         </md-button>
+        <input disabled class="popup-button-class disabled-input"/>
     </div>
 </div>
