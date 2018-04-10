@@ -287,5 +287,47 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
             $scope.dragOffset.y = coords.y - $scope.dragStart.y;
         };
 
+        $scope.sendMail = function () {
+            var data = JSON.stringify({
+                "personalizations": [
+                    {
+                        "to": [
+                            {
+                                "email": "dalit@testcraft.io"
+                            }
+                        ],
+                        "subject": "Hello, World!"
+                    }
+                ],
+                "from": {
+                    "email": "dalitrozin@gmail.com"
+                },
+                "subject": "Hello, World!",
+                "content": [
+                    {
+                        "type": "text/html",
+                        "value": "<html><p>Hello, world!</p></html>"
+                    }
+                ]
+            });
+
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    console.log(this.responseText);
+                }
+            });
+
+            xhr.open("POST", "https://api.sendgrid.com/v3/mail/send");
+            xhr.setRequestHeader("authorization", "Bearer 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");
+            xhr.setRequestHeader("content-type", "application/json");
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+
+            xhr.send(data);
+        }
+
     }
 ]);
