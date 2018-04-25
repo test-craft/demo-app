@@ -1,5 +1,4 @@
-
-<div  class="content-background">
+<div class="content-background" ng-cloak="" xmlns="http://www.w3.org/1999/html">
 
     <div class="popup-inner-container" ng-mousemove="captureMouseCoordinates($event)" ng-mousedown="onMouseDown($event)">
         <div class="popup-header">New Spec</div>
@@ -13,11 +12,25 @@
                            ng-dblclick="onDblClick(components.button)"
                            ng-right-click="onRightClick(components.button)"
                            ng-mouseenter="onMouseEnter(components.button)"
-                           ng-blur="onFocusLost(components.button)">
+                           ng-blur="onFocusLost(components.button)"
+                            ng-show = "showButton">
                     Test Button
                 </md-button>
+
                 <label class="action-label">{{buttonActionLbl}}</label>
+                <md-dialog-actions class="popup-buttons-container">
+                    <md-button class="popup-button-class"
+                    ng-click="magicHide(components.button)"
+                    ng-dblclick="magicShow(components.button)"
+                  >
+                        Magic
+                    </md-button>
+                </md-dialog-actions>
+
+                <md-button class="popup-button-class"  ></md-button>
             </md-dialog-actions>
+
+
         </div>
         <!--Label-->
         <div class="separation-div">Label tests</div>
@@ -27,10 +40,20 @@
                        ng-dblclick="onDblClick(components.label)"
                        ng-right-click="onRightClick(components.label)"
                        ng-mouseenter="onMouseEnter(components.label)"
-                       ng-blur="onFocusLost(components.label)">
+                       ng-blur="onFocusLost(components.label)"
+                        ng-show = "showLabel">
                     TEST LABEL
                 </label>
+
                 <label class="action-label">{{labelActionLbl}}</label>
+                <md-dialog-actions class="popup-buttons-container">
+                    <md-button class="popup-button-class"
+                               ng-click="magicHide(components.label)"
+                               ng-dblclick="magicShow(components.label)">
+
+                        Magic
+                    </md-button>
+                </md-dialog-actions>
             </md-dialog-actions>
         </div>
         <!--Textbox-->
@@ -42,9 +65,23 @@
                        ng-dblclick="onDblClick(components.textBox)"
                        ng-right-click="onRightClick(components.textBox)"
                        ng-mouseenter="onMouseEnter(components.textBox)"
-                       ng-blur="onFocusLost(components.textBox)"/>
+                       ng-blur="onFocusLost(components.textBox)"
+                        ng-show = "showTextBox"
+                        ng-disabled="DisabledTextBox">
+
                 <label class="action-label">{{textBoxActionLbl}}</label>
+
+                <md-dialog-actions class="popup-buttons-container">
+                    <md-button class="popup-button-class"
+                               ng-click="magicHide(components.textBox)"
+                               ng-dblclick="magicShow(components.textBox)">
+
+                        Magic
+                    </md-button>
+                </md-dialog-actions>
             </md-dialog-actions>
+
+            <md-checkbox class="test-checkbox" style= "margin-left: 15px;" ng-model="DisabledTextBox">Disable TextBox </md-checkbox>
         </div>
         <!--Checkbox-->
         <div class="separation-div">CheckBox tests</div>
@@ -52,7 +89,6 @@
             <md-dialog-actions class="popup-buttons-container">
                 <md-checkbox class="test-checkbox"
                              ng-model="checkBoxChecked"
-                             class="blue"
                              ng-change="onCheckBoxChanged()"
                              ng-dblclick="onDblClick(components.checkBox)"
                              ng-right-click="onRightClick(components.checkBox)"
@@ -83,22 +119,93 @@
             <label class="action-label">{{radioButtonActionLbl}}</label>
         </div>
         <!--Combo box-->
+        <!--select-->
         <div class="separation-div">ComboBox tests</div>
         <div class="component-container">
-            <select class="test-combobox"
-                    ng-mouseenter="onMouseEnter(components.comboBox)" ng-model="option" ng-options="o.label for o in selectOptions">
-            </select>
-            <label class="action-label">{{comboBoxActionLbl}}</label>
+            <div>
+                <h1 class="combo-box-type">ComboBox - select</h1>
+                    <select class="test-combobox"
+                            ng-model="option" ng-options="o.label for o in selectOptions"
+                            ng-mouseenter="onMouseEnter(components.comboBox)"
+                            ng-blur="onFocusLost(components.comboBox)">
+                     </select>
+                <label class="action-label">{{comboBoxActionLbl}}</label>
+        <!--md-select-->
+            </div>
+                <div  ng-cloak="">
+                    <div>
+                        <h1 class="combo-box-type ">ComboBox md-select</h1>
+                            <div layout="row" >
+                                <md-input-container  >
+                                    <md-select  ng-model="size" >
+                                        <md-option  ng-repeat="size in mdSelectOptions" value="{{size}}" >{{size}}
+
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+
+                     </div>
+                </div>
+
+            <h1 class="combo-box-type">List ComboBox</h1>
+        <!--list-->
+            <div  ng-controller="newTestFormController" class="filter-requests btn-group " >
+                <div data-toggle="dropdown" >
+                    <a href="#" class="btn btn-default dropdown-toggle popup-button-class" >
+                        {{row}}
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                </div>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="item in items"  ng-click="selectRow(item)" >
+                        <a href=""  " style = " color: #00B0FF">{{item}}</a>
+                    </li>
+                </ul>
+            </div>
 
         </div>
 
         <!--Browser-->
         <div class="separation-div">Browser tests</div>
         <div class="component-container">
-            <md-button class="popup-button-class" ng-click="invokeAlert()">
+            <md-button class="popup-button-class  md-raised" ng-click="invokeAlert()">
                 Invoke Alert
             </md-button>
             <label class="action-label">{{alertActionLbl}}</label>
+
+            <!--invoke text Alert-->
+            <span>
+                <md-button class="popup-button-class  md-raised" ng-click="invokeTextAlert()">
+                Invoke Text Alert
+            </md-button>
+                <label class="action-label" >{{alertTextActionLbl}}</label>
+                <label class="action-label" id="textAlert"></label>
+
+            </span>
+
+            <!--Invoke Dialog 2-->
+            <div style = "margin-top: 25px; margin-bottom: 15px;">
+            <span class=" dialogdemoBasicUsage" id="popupContainer" >
+                <span class="dialog-demo-content" style="margin-top: 10px;" >
+                    <md-button class="popup-button-class  md-raised" ng-click="showConfirm($event)">
+                        Invoke Dialog
+                    </md-button>
+                    <label class="action-label" ng-if="status" id="status"  >
+                        {{status}}
+                    </label>
+                </span>
+            </span>
+
+            <span class="dialogdemoBasicUsage"   layout-margin="" layout-align="center">
+                <md-button class="popup-button-class md-raised" ng-click="showAlert($event)">
+                    Invoke Confirm Dialog
+                </md-button>
+
+            </span>
+            </div>
+
+
         </div>
         <div class="component-container">
             <label class="url-label"><b>URL:</b> {{currentUrl}}</label>
@@ -112,8 +219,19 @@
         <div class="component-container">
             <label class="url-label"><b>Mouse click coordinates:</b> X:{{mouseClickCoords.X}} Y:{{mouseClickCoords.Y}}</label>
         </div>
-        <div class="component-container">
+        <div class="component-container" >
             <label id = "runScriptId" class="url-label"><b>Run Script Result: </b> </label>
+        </div>
+        <label  class="url-label" style="margin-top: 15px"><b>Wait specific amount of time test: </b> </label>
+        <div class = "popup-buttons-container">
+
+            <md-button class = "popup-button-class" ng-click="startTimer()" > Start Timer</md-button>
+            <md-button class = "popup-button-class" ng-click = "stopTimer()" > Stop Timer</md-button>
+            <md-button class = "popup-button-class" ng-click = "resetTimer()" ng-disabled="isResetDisabled()"> Reset Timer</md-button>
+            <label class = "action-label" style="font-size: 24px" id="currMSecId">  </label>
+
+
+
         </div>
 
 
@@ -121,25 +239,65 @@
         <!--Date-picker-->
         <div class="separation-div">Date picker tests</div>
         <div class="component-container">
-            <md-datepicker id="datePickerId" ng-model="chosenDate" md-placeholder="Choose date" md-open-on-focus ng-change="onDateSelected()"></md-datepicker>
+            <md-datepicker id="datePickerId" ng-model="chosenDate" md-placeholder="Choose date" md-open-on-focus=""
+                           ng-mouseenter="onMouseEnter(components.datePicker)"
+                           ng-blur="onFocusLost(components.datePicker)"
+                            ng-show="showDatePicker"
+                           ng-disabled="DisabledDatePicker">
+
+            </md-datepicker>
             <label class="action-label">{{chosenDate}}</label>
+            <label class="action-label">{{datePickerActionLbl}}</label>
+            <md-dialog-actions class="popup-buttons-container">
+                <md-button class="popup-button-class"
+                           ng-click="magicHide(components.datePicker)"
+                           ng-dblclick="magicShow(components.datePicker)"
+                            >
+
+                    Magic
+                </md-button>
+                <md-checkbox type = "checkbox" class="test-checkbox " style= "margin-left: 15px;" ng-model="DisabledDatePicker">Disable Date Picker </md-checkbox>
+            </md-dialog-actions>
+
+
         </div>
 
         <!--Image tests-->
         <div class="separation-div">Image tests</div>
 
         <div class="component-container">
-            <img id="imgId" ng-src="/app/assets/images/testcraft-logo.png" style="height:85px;" ng-dblclick="onDblClick(components.image)" style="float:left;">
+            <img id="imgId" ng-src="/app/assets/images/testcraft-logo.png" style="height:85px;"
+                 ng-click="onClick(components.image)"
+                 ng-dblclick="onDblClick(components.image)"
+                 ng-right-click="onRightClick(components.image)"
+                 ng-mouseenter="onMouseEnter(components.image)"
+                 ng-blur="onFocusLost(components.image)"
+                 ng-show = "showImage"
+                 style="float:left;">
             <label class="action-label">{{imageActionLbl}}</label>
+            <md-dialog-actions class="popup-buttons-container">
+                <md-button class="popup-button-class"
+                           ng-click="magicHide(components.image)"
+                           ng-dblclick="magicShow(components.image)">
+
+                    Magic
+                </md-button>
+            </md-dialog-actions>
         </div>
         <label class="img-src-label" >{{imgSrc}}</label>
+
+
 
         <!--File upload tests-->
         <div class="separation-div">File upload tests</div>
         <div class="component-container">
-            <input id="fileId" type="file" style="padding-bottom:5px;">
+            <input id="fileId" type="file" style="padding-bottom:5px;" ng-disabled="DisabledFileSelect">
             <label class="action-label">{{fileUploadActionLbl}}</label>
+
         </div>
+        <span>
+            <md-checkbox type = "checkbox" class="test-checkbox " style= "margin-left: 15px;" ng-model="DisabledFileSelect">Disable File Select </md-checkbox>
+        </span>
 
         <!--Draggable components-->
         <div class="row"  style="height:190px;">
@@ -155,7 +313,27 @@
                         ng-class="{'selected': models.selected === item}"
                         dnd-dragstart="onDragStart(item)">
 
-                        {{item.label}}
+                        <!--{{item.label}}-->
+                        <div ng-if="item.label">
+                            {{item.label}}
+                        </div>
+                        <div ng-if="item.input=='checkbox'">
+
+                            <input  ng-model="dragItems.checkbox" type="{{item.input}}">
+                            <span if="item.input=='checkbox'">
+                                <label class="action-label">CheckBox</label>
+                            </span>
+                        </div>
+
+
+                        <div ng-if="item.input=='text'">
+
+                            <input ng-model="dragItems.dragTitle" type="{{item.input}}" >
+                        </div>
+
+                        <div ng-if="item.img">
+                            <img   type="{{item.img}} "id="imgId" ng-src="/app/assets/images/testcraft-logo.png" style="height:85px;">
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -170,7 +348,25 @@
                         ng-class="{'selected': models.selected === item}"
                         dnd-dragstart="onDragStart(item)">
 
-                        {{item.label}}
+                        <div ng-if="item.label">
+                            {{item.label}}
+                        </div>
+                        <div ng-if="item.input=='checkbox'">
+
+                            <input ng-model="dragItems.checkbox" type="{{item.input}}" >
+                            <span  ng-if="item.input=='checkbox'">
+                                <label class="action-label">CheckBox</label>
+                            </span>
+
+                        </div>
+                        <div ng-if="item.input=='text'">
+
+                            <input ng-model="dragItems.dragTitle" type="{{item.input}}" >
+                        </div>
+
+                        <div ng-if="item.img">
+                            <img   type="{{item.img}} "id="imgId" ng-src="/app/assets/images/testcraft-logo.png" style="height:85px;">
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -185,7 +381,7 @@
             Send Mail
         </md-button>
 
-        <div class="separation-div">Ajax</div>
+        <div class="separation-div" style = "padding-top: 150px; ">Ajax</div>
         <md-button class="popup-button-class ajax-alert"
                    ng-click="ajax('alert')">
             Ajax {{activeAjax}}
@@ -195,5 +391,6 @@
             Ajax {{activeAjax}}
         </md-button>
         <input disabled class="popup-button-class disabled-input"/>
+        <div style="padding-bottom: 50px;"></div>
     </div>
 </div>

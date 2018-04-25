@@ -1,19 +1,33 @@
 'use strict';
 
-angular.module('newTestForm').controller('newTestFormController', ['$scope','$log', '$state', '$location', 'todoService', '$timeout',
-    function($scope, $log, $state, $location, todoService, $timeout){
+angular.module('newTestForm').controller('newTestFormController', ['$scope','$log', '$state', '$location', 'todoService', '$timeout','$mdDialog','$timeout',
+    function($scope, $log, $state, $location, todoService, $timeout, $mdDialog ){
 
         //action labels
         $scope.buttonActionLbl = "";
-        $scope.labelActionLbl = "12345";
+        $scope.labelActionLbl = "";
         $scope.textBoxActionLbl = "";
         $scope.checkBoxActionLbl = "";
         $scope.radioButtonActionLbl = "";
         $scope.comboBoxActionLbl = "";
         $scope.alertActionLbl = "";
+        $scope.alertTextActionLbl = "";
+
         $scope.imgActionLbl = "";
         $scope.fileUploadActionLbl = "";
+        $scope.datePickerActionLbl="";
 
+        // MAGIC- Buttons (hide elements)
+        $scope.showButton = true;
+        $scope.showLabel = true;
+        $scope.showTextBox = true;
+        $scope.showImage = true;
+        $scope.showDatePicker = true;
+        $scope.DisabledTextBox = false;
+        $scope.DisabledDatePicker=false;
+        $scope.DisabledFileSelect=false;
+
+        //elements:
         $scope.checkBoxChecked = false;
         $scope.radioButtonChecked = false;
         $scope.cmbBoxOptions = ["option1", "option 2", "option 3"];
@@ -24,14 +38,21 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
         $scope.mouseClickCoords = {X: 0,Y: 0}
         $scope.draggableButton = {label: "Drag me"};
 
-        $scope.chosenDate = null;
+        $scope.resetDisable=false;
+        $scope.chosenDate = "";
         $scope.imageSrc = "not loaded";
+
         $scope.dragStart={
             x:0,y:0
         };
         $scope.dragOffset ={
             x:0, y:0
         };
+        $scope.dragItems = {
+            dragTitle: "text input",
+            checkbox : "false"
+        };
+
 
         $scope.components = {
             button: "button",
@@ -40,7 +61,8 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
             checkBox: "checkBox",
             radioButton: "radioButton",
             comboBox: "comboBox",
-            image: "image"
+            image: "image",
+            datePicker: "datePicker"
         };
 
         $scope.actions = {
@@ -59,21 +81,29 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
             {label: "option 3"}
         ];
 
+        $scope.mdSelectOptions = [
+            "option 1",
+            "option 2",
+            "option 3",
+            "option 4"
+        ];
+
+
         $scope.draggableLists = {
             A:[
                 {
-                    label: "item 1"
+                    label: "label"
                 },
                 {
-                    label: "item 2"
+                    input: "text"
                 },
                 {
-                    label: "item 3"
+                    input: "checkbox"
                 }
             ],
             B:[
                 {
-                    label: "item 4"
+                    img: "img"
                 },
                 {
                     label: "item 5"
@@ -85,7 +115,85 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
         };
 
 
+        $scope.row = "Choose an Option";
+        $scope.items = ['option 1','option 2','option 3','option 4' ];
 
+       /*timer*/
+        $scope.currMSec=0;
+
+        $scope.isResetDisabled = function () {
+            return $scope.resetDisable;
+        }
+
+       $scope.startTimer = function (){
+           $scope.resetDisable=true;
+           $scope.TimerVar= setInterval(function (){
+               $scope.currMSec++;
+               $('[id$=currMSecId]').text($scope.currMSec);
+
+           },10);
+       }
+
+       $scope.stopTimer = function(){
+           clearInterval($scope.TimerVar);
+           $scope.resetDisable=false;
+       }
+        $scope.resetTimer = function (){
+            $('[id$=currMSecId]').text('0');
+
+        }
+
+       /*end timer*/
+
+
+
+        /*alert 1*/
+
+        $scope.showAlert = function(ev) {
+
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(false)
+                    .title('This is an alert title')
+                    .textContent('Confirmation Alert.')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Got it!')
+                    .targetEvent(ev)
+            );
+        };
+
+        /*end alert 1*/
+
+        /*alert2*/
+
+
+            $scope.status = '  ';
+
+
+
+            $scope.showConfirm = function(ev) {
+                // Appending dialog to document.body to cover sidenav in docs app
+                var confirm = $mdDialog.confirm()
+                    .title('Awesomeness Alert!!')
+                    .textContent('Are you that awesome?')
+                    .targetEvent(ev)
+                    .ok('Hell Yeah!!')
+                    .cancel('Sounds like a scam');
+
+                $mdDialog.show(confirm).then(function() {
+                    $scope.status = 'We totally agree';
+                }, function() {
+                    $scope.status = 'Too bad';
+                });
+            };
+
+
+        /*end alert 2*/
+
+        $scope.selectRow = function(item){
+            $scope.row = item;
+        }
 
         //General Actions
         $scope.onClick = function(component){
@@ -124,6 +232,35 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
             updateActionLabel($scope.components.radioButton, $scope.actions.checked);
         };
 
+        //Magic - hide elements
+       $scope.magicHide = function(component){
+             updateActionPresence(component, false);
+        };
+        $scope.magicShow = function(component){
+            updateActionPresence(component , true);
+        };
+         function  updateActionPresence(component , value){
+             switch(component){
+                 case $scope.components.button:
+                     $scope.showButton = value;
+                     break;
+                 case $scope.components.label:
+                     $scope.showLabel = value;
+                     break;
+                 case $scope.components.textBox:
+                     $scope.showTextBox = value;
+                     break;
+                 case $scope.components.image:
+                     $scope.showImage = value;
+                     break;
+                 case $scope.components.datePicker:
+                     $scope.showDatePicker = value;
+                     break;
+                 default: break;
+             }
+
+         }
+
         function updateActionLabel(component, value){
             switch(component){
                 case $scope.components.button:
@@ -147,9 +284,14 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
                 case $scope.components.image:
                     $scope.imageActionLbl = value;
                     break;
+                case $scope.components.datePicker:
+                    $scope.datePickerActionLbl = value;
+                    break;
                 default: break;
             }
         }
+
+
 
         function getImgSrc(){
            setTimeout(function(){
@@ -168,6 +310,19 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
             var res = confirm("Alert");
 
             $scope.alertActionLbl = res ? "Alert accepted" : "Alert dismissed";
+
+        };
+
+        //Invoke alert with text input:
+
+        $scope.invokeTextAlert = function(){
+            $scope.alertTextActionLbl = "Chocolate"
+            var res = prompt("What Would you never give up on?",$scope.alertTextActionLbl);
+            $scope.alertTextActionLbl = res ? "Alert accepted" : "Alert dismissed";
+            if (res != null) {
+                document.getElementById("textAlert").innerHTML =
+                     res + " is the best";
+            }
 
         };
 
