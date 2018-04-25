@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('newTestForm').controller('newTestFormController', ['$scope','$log', '$state', '$location', 'todoService', '$timeout','$mdDialog',
-    function($scope, $log, $state, $location, todoService, $timeout, $mdDialog){
+angular.module('newTestForm').controller('newTestFormController', ['$scope','$log', '$state', '$location', 'todoService', '$timeout','$mdDialog','$timeout',
+    function($scope, $log, $state, $location, todoService, $timeout, $mdDialog ){
 
         //action labels
         $scope.buttonActionLbl = "";
@@ -11,6 +11,8 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
         $scope.radioButtonActionLbl = "";
         $scope.comboBoxActionLbl = "";
         $scope.alertActionLbl = "";
+        $scope.alertTextActionLbl = "";
+
         $scope.imgActionLbl = "";
         $scope.fileUploadActionLbl = "";
         $scope.datePickerActionLbl="";
@@ -36,8 +38,10 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
         $scope.mouseClickCoords = {X: 0,Y: 0}
         $scope.draggableButton = {label: "Drag me"};
 
+        $scope.resetDisable=false;
         $scope.chosenDate = "";
         $scope.imageSrc = "not loaded";
+
         $scope.dragStart={
             x:0,y:0
         };
@@ -99,7 +103,7 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
             ],
             B:[
                 {
-                    label: "item 4"
+                    img: "img"
                 },
                 {
                     label: "item 5"
@@ -113,6 +117,36 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
 
         $scope.row = "Choose an Option";
         $scope.items = ['option 1','option 2','option 3','option 4' ];
+
+       /*timer*/
+        $scope.currMSec=0;
+
+        $scope.isResetDisabled = function () {
+            return $scope.resetDisable;
+        }
+
+       $scope.startTimer = function (){
+           $scope.resetDisable=true;
+           $scope.TimerVar= setInterval(function (){
+               $scope.currMSec++;
+               $('[id$=currMSecId]').text($scope.currMSec);
+
+           },10);
+       }
+
+       $scope.stopTimer = function(){
+           clearInterval($scope.TimerVar);
+           $scope.resetDisable=false;
+       }
+        $scope.resetTimer = function (){
+            $('[id$=currMSecId]').text('0');
+
+        }
+
+       /*end timer*/
+
+
+
         /*alert 1*/
 
         $scope.showAlert = function(ev) {
@@ -257,6 +291,8 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
             }
         }
 
+
+
         function getImgSrc(){
            setTimeout(function(){
                $scope.$apply(function(){
@@ -274,6 +310,19 @@ angular.module('newTestForm').controller('newTestFormController', ['$scope','$lo
             var res = confirm("Alert");
 
             $scope.alertActionLbl = res ? "Alert accepted" : "Alert dismissed";
+
+        };
+
+        //Invoke alert with text input:
+
+        $scope.invokeTextAlert = function(){
+            $scope.alertTextActionLbl = "Chocolate"
+            var res = prompt("What Would you never give up on?",$scope.alertTextActionLbl);
+            $scope.alertTextActionLbl = res ? "Alert accepted" : "Alert dismissed";
+            if (res != null) {
+                document.getElementById("textAlert").innerHTML =
+                     res + " is the best";
+            }
 
         };
 

@@ -26,7 +26,11 @@
                         Magic
                     </md-button>
                 </md-dialog-actions>
+
+                <md-button class="popup-button-class"  ></md-button>
             </md-dialog-actions>
+
+
         </div>
         <!--Label-->
         <div class="separation-div">Label tests</div>
@@ -170,11 +174,22 @@
             </md-button>
             <label class="action-label">{{alertActionLbl}}</label>
 
-            <!--Invoke Alert 2-->
+            <!--invoke text Alert-->
+            <span>
+                <md-button class="popup-button-class  md-raised" ng-click="invokeTextAlert()">
+                Invoke Text Alert
+            </md-button>
+                <label class="action-label" >{{alertTextActionLbl}}</label>
+                <label class="action-label" id="textAlert"></label>
+
+            </span>
+
+            <!--Invoke Dialog 2-->
+            <div style = "margin-top: 25px; margin-bottom: 15px;">
             <span class=" dialogdemoBasicUsage" id="popupContainer" >
                 <span class="dialog-demo-content" style="margin-top: 10px;" >
                     <md-button class="popup-button-class  md-raised" ng-click="showConfirm($event)">
-                        Invoke Alert 2
+                        Invoke Dialog
                     </md-button>
                     <label class="action-label" ng-if="status" id="status"  >
                         {{status}}
@@ -188,6 +203,7 @@
                 </md-button>
 
             </span>
+            </div>
 
 
         </div>
@@ -203,8 +219,19 @@
         <div class="component-container">
             <label class="url-label"><b>Mouse click coordinates:</b> X:{{mouseClickCoords.X}} Y:{{mouseClickCoords.Y}}</label>
         </div>
-        <div class="component-container">
+        <div class="component-container" >
             <label id = "runScriptId" class="url-label"><b>Run Script Result: </b> </label>
+        </div>
+        <label  class="url-label" style="margin-top: 15px"><b>Wait specific amount of time test: </b> </label>
+        <div class = "popup-buttons-container">
+
+            <md-button class = "popup-button-class" ng-click="startTimer()" > Start Timer</md-button>
+            <md-button class = "popup-button-class" ng-click = "stopTimer()" > Stop Timer</md-button>
+            <md-button class = "popup-button-class" ng-click = "resetTimer()" ng-disabled="isResetDisabled()"> Reset Timer</md-button>
+            <label class = "action-label" style="font-size: 24px" id="currMSecId">  </label>
+
+
+
         </div>
 
 
@@ -212,7 +239,7 @@
         <!--Date-picker-->
         <div class="separation-div">Date picker tests</div>
         <div class="component-container">
-            <md-datepicker id="datePickerId" ng-model="chosenDate" md-placeholder="Choose date" md-open-on-focus ng-change="onDateSelected()"
+            <md-datepicker id="datePickerId" ng-model="chosenDate" md-placeholder="Choose date" md-open-on-focus=""
                            ng-mouseenter="onMouseEnter(components.datePicker)"
                            ng-blur="onFocusLost(components.datePicker)"
                             ng-show="showDatePicker"
@@ -259,6 +286,8 @@
         </div>
         <label class="img-src-label" >{{imgSrc}}</label>
 
+
+
         <!--File upload tests-->
         <div class="separation-div">File upload tests</div>
         <div class="component-container">
@@ -295,11 +324,16 @@
                                 <label class="action-label">CheckBox</label>
                             </span>
                         </div>
+
+
                         <div ng-if="item.input=='text'">
 
                             <input ng-model="dragItems.dragTitle" type="{{item.input}}" >
                         </div>
 
+                        <div ng-if="item.img">
+                            <img   type="{{item.img}} "id="imgId" ng-src="/app/assets/images/testcraft-logo.png" style="height:85px;">
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -329,6 +363,10 @@
 
                             <input ng-model="dragItems.dragTitle" type="{{item.input}}" >
                         </div>
+
+                        <div ng-if="item.img">
+                            <img   type="{{item.img}} "id="imgId" ng-src="/app/assets/images/testcraft-logo.png" style="height:85px;">
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -338,7 +376,7 @@
             </div>
         </div>
 
-        <div class="separation-div" style = "padding-top: 50px; ">Ajax</div>
+        <div class="separation-div" style = "padding-top: 150px; ">Ajax</div>
         <md-button class="popup-button-class ajax-alert"
                    ng-click="ajax('alert')">
             Ajax {{activeAjax}}
