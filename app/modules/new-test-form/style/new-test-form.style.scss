@@ -173,7 +173,9 @@
   float: left;
   width: 150px;
 }
-
+.red-color {
+  color: red;
+}
 .todo-list-table .fifth-column .severity-level {
   color: $secondary-color;
   font-size: 18px;
@@ -286,6 +288,15 @@
 .test-combobox{
   width: 130px;
   margin-left:0px;
+  background: #FFFFFF;
+}
+.combo-box-type{
+  margin-top:6px;
+  padding-top:14px;
+  width: 50%;
+  font-family: RobotoMedium, sans-serif;
+  color: rgba(0, 0, 0, 0.50);
+  font-size: 12px;
 }
 .draggable-list{
   min-height: 42px;

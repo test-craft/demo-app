@@ -23,6 +23,9 @@
     "angular-moment": "^0.10.3",
     "angular-sanitize": "^1.5.0",
     "angular-ui-router": "^0.2.15",
+    "bootstrap": "^3.3.7",
+    "jquery": "^2.2.4",
+    "jquery-ui-bundle": "^1.12.1",
     "lodash": "^3.10.1",
     "restangular": "^1.5.1"
   },
